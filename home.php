@@ -71,9 +71,22 @@
               <input type="text" class="input form-control typeahead" name="cuisine" id="search-box" required> 
           </div>
           <div class="col-md-4">
-               <input type="submit" id="search-btn" class="btn btn-primary" name="submit" value="Search by Cuisine"> 
+            <input type="submit" id="search-btn" class="btn btn-primary" name="submit" value="Search by Cuisine"> 
           </div>
           </form>
+        </div>
+
+        <div class="container">
+          
+          <div class="col-md-12" style="margin-top: 30px;">
+            <div id="search-results-wrapper">
+              <!-- <div class="result-box panel panel-default">ok | ok | ok</div>
+              <div class="result-box panel panel-default">ok | ok | ok</div>
+              <div class="result-box panel panel-default">ok | ok | ok</div> -->
+              
+            </div>
+
+          </div>
         </div>
 
       </div>
@@ -103,11 +116,13 @@ $("document").ready(function(){
          url: 'get-cuisines.php',
          data: { data: value },
          success: function(data) {
-            /*var $title = $('<h1>').text(data.talks[0].talk_title);
-            var $description = $('<p>').text(data.talks[0].talk_description);
-            $('#info')
-               .append($title)
-               .append($description);*/
+          data = $.parseJSON(data);
+          $("#search-results-wrapper").empty();
+
+          $.each(data, function(i, item) {
+            var mydom = $('<div class="result-box panel panel-default">'+item.name+' | '+item.location+' | '+item.average_cost_for_two+'</div>');
+            $("#search-results-wrapper").append(mydom);
+          });
          }
       });
     }
