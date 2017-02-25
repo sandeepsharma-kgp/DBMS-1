@@ -92,7 +92,6 @@ $("document").ready(function(){
       remote: {
           url : 'search.php?query=%QUERY'
       }
-
   });
   $("#form").on('submit', function(e) {
     e.preventDefault();
