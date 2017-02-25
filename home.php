@@ -18,6 +18,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome - <?php echo $userRow['userEmail']; ?></title>
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
+<link rel="stylesheet" href="assets/css/autocomplete.css" type="text/css"  />
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
@@ -61,31 +62,59 @@
     	<h3>Restaurant</h3>
     	</div>
         
-        <div class="row">
-        <div class="col-lg-12">
-          <form method="post" action="search.php"  id="searchform"> 
-              <input  type="text" name="name"> 
-               <input type="submit" name="submit" value="Search by Cuisine"> 
-          </form> 
-        <!-- <h1><img src="assets/img/logo.png"></h1> -->
+      <div class="row">
+
+        <div class="col-md-12">
+          <form name="form" action="" id="form" method="POST">
+            
+          <div class="col-md-4">
+              <input type="text" class="input form-control typeahead" name="cuisine" id="search-box" required> 
+          </div>
+          <div class="col-md-4">
+               <input type="submit" id="search-btn" class="btn btn-primary" name="submit" value="Search by Cuisine"> 
+          </div>
+          </form>
         </div>
-        </div>
-    
+
+      </div>
     </div>
     
     </div>
     
-    <script src="assets/jquery-1.11.3-jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-    $(document).ready(function(){
-      $("#search").on('keyup',function(){
-        $.ajax(){
-          
-        }
-      })
-    })
-    </script>
+<script src="assets/jquery-1.11.3-jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.9.3/typeahead.min.js"></script>
+<!-- <script src="assets/js/typeahead.bundle.min.js"></script> -->
+<script type="text/javascript">
+$("document").ready(function(){
+  $("#search-box").typeahead({
+      name : 'cuisine',
+      remote: {
+          url : 'search.php?query=%QUERY'
+      }
+
+  });
+  $("#form").on('submit', function(e) {
+    e.preventDefault();
+    var value = $("#search-box").val();
+    console.log(value);
+    if(value != "" || value != undefined) {
+      $.ajax({
+         type: 'GET',
+         url: 'get-cuisines.php',
+         data: { data: value },
+         success: function(data) {
+            /*var $title = $('<h1>').text(data.talks[0].talk_title);
+            var $description = $('<p>').text(data.talks[0].talk_description);
+            $('#info')
+               .append($title)
+               .append($description);*/
+         }
+      });
+    }
+  });
+});
+</script>
     
 </body>
 </html>
