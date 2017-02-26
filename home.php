@@ -33,12 +33,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://www.codingcage.com">Coding Cage</a>
+        <a class="navbar-brand" href="#">DBMS</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="http://www.codingcage.com/2015/01/user-registration-and-login-script-using-php-mysql.html">Back to Article</a></li>
-          <li><a href="http://www.codingcage.com/search/label/jQuery">jQuery</a></li>
+          <li class="active"><a href="#">Back to Article</a></li>
+          <li><a href="#">jQuery</a></li>
           <li><a href="#">CART</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -142,7 +142,7 @@ $("document").ready(function(){
       }
   });
   function generateDOM(index, name, location, cost) {
-    var dom = '<div class="result-box panel panel-default col-md-12"><div class="col-md-8"><p><b>'+name+'</b></p><p class="light-text">'+location+'</p></div><div class="col-md-2"><h3>₹ '+cost+'</h3></div><div class="col-md-2"><input type="button" value="-" class="qtyminus" field='+index+' /><input type="text" name='+index+' value="0" class="qty" /><input type="button" value="+" class="qtyplus" field='+index+' /><br><input type="button" data-id='+index+' data-name="'+name+'" data-location="'+location+'" data-cost="'+cost+'" class="btn btn-default modified-primary add-cart" value="Add to Cart" /></div></div></div>';
+    var dom = '<div class="result-box panel panel-default col-md-12"><div class="col-md-8"><p><b>'+name+'</b></p><p class="light-text">'+location+'</p></div><div class="col-md-2"><h3>₹ '+cost+'</h3></div><div class="col-md-2"><input type="button" value="-" class="qtyminus" field='+index+' /><input type="text" name='+index+' value="0" class="qty" /><input type="button" value="+" class="qtyplus" field='+index+' /><br><input type="button" data-id='+index+' data-name="'+name+'" data-location="'+location+'" data-cost="'+cost+'" class="btn btn-default modified-btn add-cart" value="Update Cart" /></div></div></div>';
     return dom;
   }
 

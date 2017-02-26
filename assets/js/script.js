@@ -56,10 +56,21 @@ $('#search-results-wrapper').on('click', '.add-cart', function(e){
         console.log("Item added!");
         set_cart_amount();
 
+    } else if (count == 0 ) {
+        cart.splice(id, 1);
+        set_cart_amount();
     }
 
 
 });
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
 function set_cart_amount() {
     var amount = 0;
@@ -80,7 +91,7 @@ $("#show-cart").on('click', function(event) {
     $("#cart-body").empty();
 
     // console.log(cart);
-    if (cart.length > 0) {
+    if (!isEmpty(cart) && cart.length > 0) {
 
         cart.forEach( function (value){
             console.log(value);
