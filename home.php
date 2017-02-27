@@ -36,11 +36,6 @@
         <a class="navbar-brand" href="#">DBMS</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Back to Article</a></li>
-          <li><a href="#">jQuery</a></li>
-          <li><a href="#">CART</a></li>
-        </ul>
         <ul class="nav navbar-nav navbar-right">
           
           <li class="dropdown">
@@ -60,7 +55,7 @@
   <div class="container">
     
     	<div class="page-header">
-    	<h3>Restaurant <span class="pull-right"><button class="btn btn-danger upper-btn" id="show-cart">< Cart ></button><button class="btn btn-danger upper-btn" id="checkout-btn">< Checkout ></button> Amount: ₹ <span id="cart-amount">0</span> </span> </h3>
+    	<h3>Restaurant <span class="pull-right"><button class="btn btn-danger upper-btn" id="show-cart"><span class="glyphicon glyphicon-shopping-cart" /> Cart </button><button class="btn btn-danger upper-btn" id="checkout-btn"><span class="glyphicon glyphicon-new-window" /> Checkout</button> Amount: ₹ <span id="cart-amount">0</span> </span> </h3>
     	</div>
         
       <div class="row">
