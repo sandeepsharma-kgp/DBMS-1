@@ -95,7 +95,7 @@ $("#show-cart").on('click', function(event) {
 
         cart.forEach( function (value){
             console.log(value);
-            var mydom = $('<div class="result-box panel panel-default col-md-12"><div class="col-md-8"><p><b>'+value.name+'</b></p><p class="light-text">'+value.location+'</p></div><div class="col-md-4"><h3>₹&nbsp;'+value.cost*value.count+'&nbsp;('+value.count+')</h3></div><div class="col-md-2"></div></div></div>');
+            var mydom = $('<div class="result-box panel panel-default col-md-12"><div class="col-md-8"><p><b>'+value.name+'</b></p><p class="light-text">'+value.location+'</p></div><div class="col-md-4"><h3>₹ '+value.cost+' ('+value.count+') = ₹ '+ value.cost*value.count+ '</h3></div><div class="col-md-2"></div></div></div>');
             $("#cart-body").append(mydom);
             console.log(mydom);
         });
