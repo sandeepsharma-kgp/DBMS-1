@@ -111,10 +111,9 @@ $("#show-cart").on('click', function(event) {
 
 $("#checkout-btn").on('click', function(event) {
     event.preventDefault();
-    alert("Checkout logic kar le implement,..");
+    alert("Your order has been successfully placed\nYour Tracking id is :");
+
     
-    // Write checkout logic here
-    // cart variable available here
 
 });
 
