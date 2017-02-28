@@ -109,12 +109,15 @@ $("#show-cart").on('click', function(event) {
 });
 
 
-$("#checkout-btn").on('click', function(event) {
-    event.preventDefault();
-    alert("Your order has been successfully placed\nYour Tracking id is :");
+// $("#checkout-btn").on('click', function(event) {
+//     event.preventDefault();
+//     alert("Your order has been successfully placed\nYour Tracking id is :");
 
-    
+// });
+// $("#trackstatus").on('click', function(event) {
+//     event.preventDefault();
+//     var tracking_id = prompt("Enter your tracking id");
 
-});
+// });
 
 });

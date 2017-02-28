@@ -11,6 +11,7 @@
 	// select loggedin users detail
 	$res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
 	$userRow=mysql_fetch_array($res);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,7 +56,7 @@
   <div class="container">
     
     	<div class="page-header">
-    	<h3>Restaurant <span class="pull-right"><button class="btn btn-danger upper-btn" id="show-cart"><span class="glyphicon glyphicon-shopping-cart" /> Cart </button><button class="btn btn-danger upper-btn" id="checkout-btn"><span class="glyphicon glyphicon-new-window" /> Checkout</button> Amount: ₹ <span id="cart-amount">0</span> </span> </h3>
+    	<h3>Restaurant <span class="pull-right"><button class="btn btn-danger upper-btn" id="trackstatus"><span class="glyphicon glyphicon-tracking-status" /> Delivery-Status </button><button class="btn btn-danger upper-btn" id="show-cart"><span class="glyphicon glyphicon-shopping-cart" /> Cart </button><button class="btn btn-danger upper-btn" id="checkout-btn"><span class="glyphicon glyphicon-new-window" /> Checkout</button> Amount: ₹ <span id="cart-amount">0</span> </span> </h3>
     	</div>
         
       <div class="row">
@@ -166,6 +167,37 @@ $("document").ready(function(){
       });
     }
   });
+$("#trackstatus").on('click', function(event) {
+    event.preventDefault();
+    var tracking_id = prompt("Enter your tracking id");
+
+});
+$("#checkout-btn").on('click', function(event) {
+    event.preventDefault();
+    if cart.empty(){
+      return;
+    }
+    description = "";
+    cart.forEach( function (value){
+            console.log(value);
+            description += "Name : " + value.name + ", " + "Location : " + value.location + ", " + "Cost :" + value.cost +", "+"Quantity : "  + value.count + "\n";
+          
+            // var mydom = $('<div class="result-box panel panel-default col-md-12"><div class="col-md-8"><p><b>'+value.name+'</b></p><p class="light-text">'+value.location+'</p></div><div class="col-md-4"><h3>₹ '+value.cost+' ('+value.count+') = ₹ '+ value.cost*value.count+ '</h3></div><div class="col-md-2"></div></div></div>');
+            // $("#cart-body").append(mydom);
+            // console.log(mydom);
+        });
+    console.log(description);
+    $.ajax({
+         type: 'POST',
+         url: 'get_orderid.php',
+         data: { data:  <?php echo $_SESSION['user'] ?> , description: description},
+         success: function(data) {
+          alert("Your order has been successfully placed.Your tracking id is : " + data);
+          //alert("Your order has been successfully placed\nYour Tracking id is :");
+         }
+      });
+
+});
 });
 </script>
     
