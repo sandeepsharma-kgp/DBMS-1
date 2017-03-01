@@ -63,6 +63,13 @@ $('#search-results-wrapper').on('click', '.add-cart', function(e){
 
 
 });
+function set_cart_amount() {
+    var amount = 0;
+    cart.forEach( function (value){
+        amount = amount + value.count*value.cost;
+    });
+    $("#cart-amount").text(amount);
+}
 
 function isEmpty(obj) {
     for(var key in obj) {
@@ -72,13 +79,6 @@ function isEmpty(obj) {
     return true;
 }
 
-function set_cart_amount() {
-    var amount = 0;
-    cart.forEach( function (value){
-        amount = amount + value.count*value.cost;
-    });
-    $("#cart-amount").text(amount);
-}
 
 
 function generateDOM(index, name, location, cost) {
@@ -107,17 +107,5 @@ $("#show-cart").on('click', function(event) {
     $('#cart-modal').modal('show')
     /* Act on the event */
 });
-
-
-// $("#checkout-btn").on('click', function(event) {
-//     event.preventDefault();
-//     alert("Your order has been successfully placed\nYour Tracking id is :");
-
-// });
-// $("#trackstatus").on('click', function(event) {
-//     event.preventDefault();
-//     var tracking_id = prompt("Enter your tracking id");
-
-// });
 
 });

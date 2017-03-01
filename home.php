@@ -170,15 +170,43 @@ $("document").ready(function(){
 $("#trackstatus").on('click', function(event) {
     event.preventDefault();
     var tracking_id = prompt("Enter your tracking id");
+    console.log(tracking_id);
+    $.ajax({
+       type: 'POST',
+       url: 'get-track.php',
+       data: { data:  <?php echo $_SESSION['user'] ?> , tracking_id: tracking_id},
+       success: function(data) {
+        console.log(data);
+        alert("Your order status: " + data);
+        //alert("Your order has been successfully placed.Your tr id is : " + data);
+       }
+    });
 
 });
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+function set_cart_amount() {
+    var amount = 0;
+    cart.forEach( function (value){
+        amount = amount + value.count*value.cost;
+    });
+    $("#cart-amount").text(amount);
+}
 $("#checkout-btn").on('click', function(event) {
     event.preventDefault();
-    if cart.empty(){
-      return;
-    }
-    description = "";
-    cart.forEach( function (value){
+    if (isEmpty(cart)) {
+        alert('Your cart is empty!');
+        return false;
+    } else {
+
+        description = "";
+        cart.forEach( function (value){
             console.log(value);
             description += "Name : " + value.name + ", " + "Location : " + value.location + ", " + "Cost :" + value.cost +", "+"Quantity : "  + value.count + "\n";
           
@@ -186,18 +214,22 @@ $("#checkout-btn").on('click', function(event) {
             // $("#cart-body").append(mydom);
             // console.log(mydom);
         });
-    console.log(description);
-    $.ajax({
+        console.log(description);
+        $.ajax({
          type: 'POST',
          url: 'get_orderid.php',
          data: { data:  <?php echo $_SESSION['user'] ?> , description: description},
          success: function(data) {
           alert("Your order has been successfully placed.Your tracking id is : " + data);
-          //alert("Your order has been successfully placed\nYour Tracking id is :");
+          cart = [];
+          set_cart_amount();
          }
       });
+    }
 
 });
+
+
 });
 </script>
     
