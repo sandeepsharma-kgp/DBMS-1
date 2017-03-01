@@ -56,7 +56,7 @@
   <div class="container">
     
     	<div class="page-header">
-    	<h3>Restaurant <span class="pull-right"><button class="btn btn-danger upper-btn" id="trackstatus"><span class="glyphicon glyphicon-tracking-status" /> Delivery-Status </button><button class="btn btn-danger upper-btn" id="show-cart"><span class="glyphicon glyphicon-shopping-cart" /> Cart </button><button class="btn btn-danger upper-btn" id="checkout-btn"><span class="glyphicon glyphicon-new-window" /> Checkout</button> Amount: ₹ <span id="cart-amount">0</span> </span> </h3>
+    	<h3>Restaurant <span class="pull-right"><button class="btn btn-danger upper-btn" id="trackstatus"><span class="glyphicon glyphicon-cutlery" /> Delivery-Status </button><button class="btn btn-danger upper-btn" id="show-cart"><span class="glyphicon glyphicon-shopping-cart" /> Cart </button><button class="btn btn-danger upper-btn" id="checkout-btn"><span class="glyphicon glyphicon-new-window" /> Checkout</button> Amount: ₹ <span id="cart-amount">0</span> </span> </h3>
     	</div>
         
       <div class="row">
@@ -133,9 +133,28 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">My Cart</h4>
+        <h4 class="modal-title">My Order</h4>
       </div>
       <div class="modal-body" id="status-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- CheckButton  Modal -->
+<div id="check-status-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">My Track_id</h4>
+      </div>
+      <div class="modal-body" id="check-body">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -199,7 +218,6 @@ $("#trackstatus").on('click', function(event) {
         // $("#search-results-wrapper").empty();
         console.log(data);
         var dstring = '<div><p>Your order status: <b>'+data+'</b></p></div>';
-        // var dom = $(dstring);
         $("#status-body").html(dstring);
         $('#order-status-modal').modal('show');
         //alert("Your order has been successfully placed.Your tr id is : " + data);
@@ -244,7 +262,10 @@ $("#checkout-btn").on('click', function(event) {
          url: 'get_orderid.php',
          data: { data:  <?php echo $_SESSION['user'] ?> , description: description},
          success: function(data) {
-          alert("Your order has been successfully placed.Your tracking id is : " + data);
+          var dstring = '<div><p>Your Track id is : <b>'+data+'</b></p></div>';
+          $("#check-body").html(dstring);
+          $('#check-status-modal').modal('show');
+          //alert("Your order has been successfully placed.Your tracking id is : " + data);
           cart = [];
           set_cart_amount();
          }
