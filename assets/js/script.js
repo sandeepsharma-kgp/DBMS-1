@@ -104,7 +104,7 @@ $("#show-cart").on('click', function(event) {
         $("#cart-body").append('<div class="result-box panel panel-default col-md-12"><h5>Cart Empty!</h5></div>');
     }
 
-    $('#cart-modal').modal('show')
+    $('#cart-modal').modal('show');
     /* Act on the event */
 });
 

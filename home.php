@@ -124,7 +124,27 @@
 
   </div>
 </div>
-    
+
+<!-- Status Modal -->
+<div id="order-status-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">My Cart</h4>
+      </div>
+      <div class="modal-body" id="status-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <script src="assets/jquery-1.11.3-jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/script.js"></script>
@@ -176,8 +196,12 @@ $("#trackstatus").on('click', function(event) {
        url: 'get-track.php',
        data: { data:  <?php echo $_SESSION['user'] ?> , tracking_id: tracking_id},
        success: function(data) {
+        // $("#search-results-wrapper").empty();
         console.log(data);
-        alert("Your order status: " + data);
+        var dstring = '<div><p>Your order status: <b>'+data+'</b></p></div>';
+        // var dom = $(dstring);
+        $("#status-body").html(dstring);
+        $('#order-status-modal').modal('show');
         //alert("Your order has been successfully placed.Your tr id is : " + data);
        }
     });
